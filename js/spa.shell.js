@@ -28,7 +28,7 @@ spa.shell = (function () {
                 + '<div class="spa-shell-foot"></div>'
                 + '<div class="spa-shell-chat"></div>'
                 + '<div class="spa-shell-modal"></div>',
-            chat_extend_time     : 1000,
+            chat_extend_time     : 250,
             chat_retract_time    : 300,
             chat_extend_height   : 450,
             chat_retract_height  : 15,
@@ -36,7 +36,7 @@ spa.shell = (function () {
             chat_retracted_title : 'Click to extend'
         },
         stateMap  = { $container        : null,
-            is_chat_retracted : true
+                      is_chat_retracted : true
         },
         jqueryMap = {},
 
@@ -120,7 +120,11 @@ spa.shell = (function () {
 
     //------------------- BEGIN EVENT HANDLERS -------------------
     onClickChat = function ( event ) {
-        toggleChat( stateMap.is_chat_retracted );
+        if ( toggleChat( stateMap.is_chat_retracted ) ) {
+            $.uriAnchor.setAnchor({
+                chat : ( stateMap.is_chat_retracted ? 'open' : 'closed' )
+            });
+        }
         return false;
     };
     //-------------------- END EVENT HANDLERS --------------------
@@ -137,7 +141,7 @@ spa.shell = (function () {
         stateMap.is_chat_retracted = true;
         jqueryMap.$chat
             .attr( 'title', configMap.chat_retracted_title )
-            .click ( onClickChat );
+            .click( onClickChat );
     };
     // End PUBLIC method /initModule/
 
