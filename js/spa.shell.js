@@ -31,7 +31,7 @@ spa.shell = (function () {
                 + '<div class="spa-shell-foot"></div>'
                 + '<div class="spa-shell-chat"></div>'
                 + '<div class="spa-shell-modal"></div>',
-            chat_extend_time     : 250,
+            chat_extend_time     : 1000,
             chat_retract_time    : 300,
             chat_extend_height   : 450,
             chat_retract_height  : 15,
@@ -45,7 +45,7 @@ spa.shell = (function () {
         jqueryMap = {},
 
         copyAnchorMap, setJqueryMap, toggleChat,
-        changeAnchorPart, onHashChange, onClickChat,
+        changeAnchorPart, onHashchange, onClickChat,
         initModule;
     //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -163,7 +163,7 @@ spa.shell = (function () {
                     // update matching dependent key
                     key_name_dep = '_' + key_name;
                     if ( arg_map[key_name_dep] ) {
-                        anchor_map_revise[key_name_dep] = arg_map[key_name];
+                        anchor_map_revise[key_name_dep] = arg_map[key_name_dep];
                     }
                     else {
                         delete anchor_map_revise[key_name_dep];
@@ -175,8 +175,7 @@ spa.shell = (function () {
 
         // Begin attempt to update URI; revert if not successful
         try {
-            $.uriAnchor.setAnchor( stateMap.anchor_map,null,true );
-            bool_return = false;
+            $.uriAnchor.setAnchor( anchor_map_revise );
         }
         catch ( error ) {
             // replace URI with existing state
@@ -202,7 +201,7 @@ spa.shell = (function () {
     //  * Adjust the application only where proposed state
     //    differs from existing
     //
-    onHashChange = function ( event ) {
+    onHashchange = function ( event ) {
         var
             anchor_map_previous = copyAnchorMap(),
             anchor_map_proposed,
@@ -222,8 +221,7 @@ spa.shell = (function () {
         _s_chat_proposed = anchor_map_proposed._s_chat;
 
         // Begin adjust chat component if changed
-        if ( ! anchor_map_previous
-            || _s_chat_previous !== _s_chat_proposed
+        if ( ! anchor_map_previous || _s_chat_previous !== _s_chat_proposed
             ) {
             s_chat_proposed = anchor_map_proposed.chat;
             switch ( s_chat_proposed ) {
@@ -280,7 +278,7 @@ spa.shell = (function () {
         // considered onload.
         //
         $(window)
-            .bind( 'hashchange', onHashChange )
+            .bind( 'hashchange', onHashchange )
             .trigger( 'hashchange' );
     };
     // End PUBLIC method /initModule/
