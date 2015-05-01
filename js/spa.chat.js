@@ -11,5 +11,12 @@ spa.chat = (function(){
 // ---- END MODULE SCOPE VARIABLES ----
 // ---- BEGIN UTILITY SCOPE MODULES ----
 // ---- END UTILITY SCOPE MODULES ----
+// ---- BEGIN DOM METHODS ----
+    // Begin DOM method /setjQueryMap/
+    setJqueryMap = function() {
+        var $container = stateMap.$container;
+        jqueryMap = { $container : $container };
     };
+
+// ---- END DOM METHODS----
 }());
