@@ -19,4 +19,16 @@ spa.chat = (function(){
     };
 
 // ---- END DOM METHODS----
+// ---- BEGIN PUBLIC METHODS ----
+configModule = function(input_map) {
+    spa.util.setConfigMap({
+    input_map: input_map,
+    settable_map: configMap.settable_map,
+    config_map: configMap
+
+});
+    return true;
+};
+
+
 }());
