@@ -30,5 +30,35 @@ configModule = function(input_map) {
     return true;
 };
 
+    // Begin public method /initModule/
+    // Example    : spa.chat.initModule( $('#div_id') );
+    // Purpose    :
+    //   Directs Chat to offer its capability to the user
+    // Arguments  :
+    //   * $append_target (example: $('#div_id')).
+    //     A jQuery collection that should represent
+    //     a single DOM container
+    // Action     :
+    //   Appends the chat slider to the provided container and fills
+    //   it with HTML content.  It then initializes elements,
+    //   events, and handlers to provide the user with a chat-room
+    //   interface
+    // Returns    : true on success, false on failure
+    // Throws     : none
+    //
+    initModule = function ( $append_target ) {
+        $append_target.append( configMap.main_html );
+        stateMap.$append_target = $append_target;
+        setJqueryMap();
+        setPxSizes();
+
+        // initialize chat slider to default title and state
+        jqueryMap.$toggle.prop( 'title', configMap.slider_closed_title );
+        jqueryMap.$head.click( onClickToggle );
+        stateMap.position_type = 'closed';
+
+        return true;
+    };
+
 
 }());
