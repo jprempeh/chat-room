@@ -59,6 +59,13 @@ configModule = function(input_map) {
 
         return true;
     };
+    // End public method /initModule/
 
-
+    // return public methods
+    return {
+        setSliderPosition : setSliderPosition,
+        configModule      : configModule,
+        initModule        : initModule
+    };
+    //------------------- END PUBLIC METHODS ---------------------
 }());
