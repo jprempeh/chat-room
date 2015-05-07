@@ -35,3 +35,5 @@ spa.util = (function () {
         return error;
     };
 // End Public constructor /makeError/
+
+// Add more methods later
