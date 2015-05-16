@@ -1,8 +1,6 @@
 /*
  * spa.util.js
  * General JavaScript utilities
- *
- *
  */
 
 /*jslint          browser : true,  continue : true,
